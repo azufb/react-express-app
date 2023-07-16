@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import apolloClient from './apolloClient';
+import { gql } from '@apollo/client';
 
-function App() {
+const App = () => {
+  const [message, setMessage] = useState<string>('');
+
+  useEffect(() => {
+    apolloClient
+      .query({
+        query: gql`
+          query GetHello {
+            hello
+          }
+        `,
+      })
+      .then((result) => {
+        setMessage(result.data.hello);
+      });
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <p>{message}</p>
       </header>
     </div>
   );
-}
+};
 
 export default App;
