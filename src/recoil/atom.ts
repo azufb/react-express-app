@@ -1,9 +1,8 @@
 import { atom } from 'recoil';
 
-// サインイン状態を管理する
-const isSignedinAtom = atom<boolean>({
-  key: 'isSignedinAtom',
+const isTaskEditableAtom = atom<boolean>({
+  key: 'isTaskEditableAtom',
   default: false,
 });
 
-export { isSignedinAtom };
+export { isTaskEditableAtom };
