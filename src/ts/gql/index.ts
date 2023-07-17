@@ -36,30 +36,3 @@ export const DELETE_TASK: DocumentNode = gql`
     }
   }
 `;
-
-export const SEARCH_SAME_EMAIL_USER: DocumentNode = gql`
-  mutation SearchSameEmailUser($email: String) {
-    searchSameEmailUser(email: $email) {
-      id
-      name
-    }
-  }
-`;
-
-export const SIGNUP: DocumentNode = gql`
-  mutation Signup($name: String, $email: String, $password: String) {
-    signup(name: $name, email: $email, password: $password) {
-      id
-      name
-    }
-  }
-`;
-
-export const SIGNIN: DocumentNode = gql`
-  mutation Signin($email: String, $password: String) {
-    signin(email: $email, password: $password) {
-      code
-      message
-    }
-  }
-`;
