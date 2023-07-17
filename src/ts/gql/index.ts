@@ -36,3 +36,13 @@ export const DELETE_TASK: DocumentNode = gql`
     }
   }
 `;
+
+export const UPDATE_TASK: DocumentNode = gql`
+  mutation UpdateTask($id: Int, $title: String, $deadline: String) {
+    updateTask(id: $id, title: $title, deadline: $deadline) {
+      id
+      title
+      deadline
+    }
+  }
+`;
