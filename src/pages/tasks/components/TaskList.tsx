@@ -26,32 +26,36 @@ const TaskList = () => {
     <div>
       <p>一覧</p>
       {loading && <p>Loading...</p>}
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>タイトル</th>
-            <th>期限</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* ローディング終わるのを待たないと、undefinedが返ってくる */}
-          {!loading &&
-            data.getTasks.map((task: any) => (
-              <tr key={task.id}>
-                <td>{task.id}</td>
-                <td>{task.title}</td>
-                <td>{task.deadline}</td>
-                <td>
-                  <button onClick={() => handleDeleteTask(task.id)}>
-                    削除
-                  </button>
-                </td>
+      {!loading &&
+        (data.getTasks.length === 0 ? (
+          <p>表示するタスクは現在0です。</p>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>タイトル</th>
+                <th>期限</th>
+                <th></th>
               </tr>
-            ))}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {/* ローディング終わるのを待たないと、undefinedが返ってくる */}
+              {data.getTasks.map((task: any) => (
+                <tr key={task.id}>
+                  <td>{task.id}</td>
+                  <td>{task.title}</td>
+                  <td>{task.deadline}</td>
+                  <td>
+                    <button onClick={() => handleDeleteTask(task.id)}>
+                      削除
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ))}
       {error && <p>Ooops!Error is occured!</p>}
     </div>
   );
