@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { SIGNUP, SEARCH_SAME_EMAIL_USER } from '../../ts/gql';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { isSignedinAtom } from '../../recoil/atom';
 
 type FormDataParam = {
   name: string;
@@ -14,6 +16,7 @@ const Signup = () => {
   const [signup] = useMutation(SIGNUP);
   const [searchSameEmailUser] = useMutation(SEARCH_SAME_EMAIL_USER);
   const navigate: NavigateFunction = useNavigate();
+  const setIsSignedin = useSetRecoilState<boolean>(isSignedinAtom);
 
   // 登録ボタン押下で、サインアップ処理実行。
   const onSubmit = async (data: any): Promise<void> => {
@@ -33,6 +36,8 @@ const Signup = () => {
       await signup({ variables: param }).then((result: any) => {
         console.log(result.data);
       });
+
+      setIsSignedin(true);
 
       navigate('/Tasks');
 

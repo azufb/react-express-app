@@ -2,11 +2,14 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { SIGNIN } from '../../ts/gql';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { isSignedinAtom } from '../../recoil/atom';
 
 const Signin = () => {
   const { register, handleSubmit, reset } = useForm();
   const [signin] = useMutation(SIGNIN);
   const navigate: NavigateFunction = useNavigate();
+  const setIsSignedin = useSetRecoilState<boolean>(isSignedinAtom);
 
   // サインインボタン押下で、サインイン処理実行。
   const onSubmit = async (data: any): Promise<void> => {
@@ -18,6 +21,8 @@ const Signin = () => {
     await signin({ variables: param }).then((result: any) => {
       console.log(result.data);
     });
+
+    setIsSignedin(true);
 
     navigate('/Tasks');
 
