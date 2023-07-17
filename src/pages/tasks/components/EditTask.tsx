@@ -57,6 +57,7 @@ const EditTask = (props: any) => {
           defaultValue={new Date(props.previousDeadline)}
           render={({ field: { onChange, value } }) => (
             <DatePicker
+              showIcon
               locale='ja'
               selected={value ? value : new Date(props.previousDeadline)}
               onChange={(date) => {
