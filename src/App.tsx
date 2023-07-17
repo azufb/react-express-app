@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import apolloClient from './apolloClient';
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import TasksIndex from './pages/tasks/TasksIndex';
+
+const GET_HELLO = gql`
+  query getHello {
+    hello
+  }
+`;
 
 const App = () => {
-  const [message, setMessage] = useState<string>('');
+  const { loading, error, data } = useQuery(GET_HELLO);
 
-  useEffect(() => {
-    apolloClient
-      .query({
-        query: gql`
-          query GetHello {
-            hello
-          }
-        `,
-      })
-      .then((result) => {
-        setMessage(result.data.hello);
-      });
-  });
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>{message}</p>
+    <div>
+      <header>
+        <p>{data.hello}</p>
       </header>
+      <TasksIndex />
     </div>
   );
 };
