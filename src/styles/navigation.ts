@@ -15,7 +15,7 @@ export const navigation = css`
     font-weight: bold;
 
     &::after {
-      content: '>';
+      content: '▶︎';
       padding-left: 0.5rem;
     }
 
