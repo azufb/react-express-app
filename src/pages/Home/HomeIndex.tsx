@@ -1,10 +1,12 @@
+import Layout from '../../components/Layout';
 import PageTitle from '../../components/PageTitle';
 
 const HomeIndex = () => {
   return (
-    <div>
+    <Layout>
       <PageTitle pageTitle='Home' />
-    </div>
+      <p>ああああああああああああああ</p>
+    </Layout>
   );
 };
 

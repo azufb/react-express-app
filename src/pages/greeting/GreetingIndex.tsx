@@ -1,12 +1,13 @@
 import { useQuery } from '@apollo/client';
 import { GET_GREETING } from '../../ts/gql';
 import PageTitle from '../../components/PageTitle';
+import Layout from '../../components/Layout';
 
 const GreetingIndex = () => {
   const { loading, error, data } = useQuery(GET_GREETING);
 
   return (
-    <div>
+    <Layout>
       <PageTitle pageTitle='Greeting' />
       {loading && <p>Loading...</p>}
       {!loading && (
@@ -16,7 +17,7 @@ const GreetingIndex = () => {
         </>
       )}
       {error && <p>Error : {error.message}</p>}
-    </div>
+    </Layout>
   );
 };
 
