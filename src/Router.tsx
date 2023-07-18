@@ -1,6 +1,6 @@
 import { Routes, Route, Link, Outlet, BrowserRouter } from 'react-router-dom';
-import TasksIndex from './pages/tasks/TasksIndex';
-import GreetingIndex from './pages/greeting/GreetingIndex';
+import TasksIndex from './pages/Tasks/TasksIndex';
+import GreetingIndex from './pages/Greeting/GreetingIndex';
 import HomeIndex from './pages/Home/HomeIndex';
 
 const Layout = () => {
