@@ -1,24 +1,31 @@
+/** @jsxImportSource @emotion/react */
+
 import { Routes, Route, Link, Outlet, BrowserRouter } from 'react-router-dom';
 import TasksIndex from './pages/Tasks/TasksIndex';
 import GreetingIndex from './pages/Greeting/GreetingIndex';
 import HomeIndex from './pages/Home/HomeIndex';
+import { navigationWrapper, navigation } from './styles/navigation';
 
 const Layout = () => {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
+      <div css={navigationWrapper}>
+        <div css={navigation}>
+          <span>
             <Link to='/'>Home</Link>
-          </li>
-          <li>
+          </span>
+        </div>
+        <div css={navigation}>
+          <span>
             <Link to='/Tasks'>タスク</Link>
-          </li>
-          <li>
+          </span>
+        </div>
+        <div css={navigation}>
+          <span>
             <Link to='/Greeting'>Greeting</Link>
-          </li>
-        </ul>
-      </nav>
+          </span>
+        </div>
+      </div>
 
       <hr />
 
