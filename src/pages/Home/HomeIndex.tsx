@@ -1,7 +1,9 @@
+import PageTitle from '../../components/PageTitle';
+
 const HomeIndex = () => {
   return (
     <div>
-      <p>Home</p>
+      <PageTitle pageTitle='Home' />
     </div>
   );
 };

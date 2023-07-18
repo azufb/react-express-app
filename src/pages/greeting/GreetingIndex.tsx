@@ -1,11 +1,13 @@
 import { useQuery } from '@apollo/client';
 import { GET_GREETING } from '../../ts/gql';
+import PageTitle from '../../components/PageTitle';
 
 const GreetingIndex = () => {
   const { loading, error, data } = useQuery(GET_GREETING);
 
   return (
     <div>
+      <PageTitle pageTitle='Greeting' />
       {loading && <p>Loading...</p>}
       {!loading && (
         <>

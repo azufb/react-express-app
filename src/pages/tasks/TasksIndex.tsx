@@ -1,10 +1,11 @@
+import PageTitle from '../../components/PageTitle';
 import InputForm from './components/InputForm';
 import TaskList from './components/TaskList';
 
 const TasksIndex = () => {
   return (
     <div>
-      <p>タスク管理</p>
+      <PageTitle pageTitle='タスク管理' />
       <InputForm />
       <TaskList />
     </div>
