@@ -12,5 +12,16 @@ export const navigation = css`
   a {
     color: initial;
     text-decoration: none;
+    font-weight: bold;
+
+    &::after {
+      content: '>';
+      padding-left: 0.5rem;
+    }
+
+    :hover,
+    :active {
+      color: pink;
+    }
   }
 `;
