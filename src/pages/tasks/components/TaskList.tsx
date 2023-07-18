@@ -35,7 +35,6 @@ const TaskList = () => {
 
   return (
     <div>
-      <p>一覧</p>
       {loading && <p>Loading...</p>}
       {!loading &&
         (data.getTasks.length === 0 ? (

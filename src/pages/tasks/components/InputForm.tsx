@@ -43,7 +43,6 @@ const InputForm = () => {
 
   return (
     <div>
-      <p>フォーム</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor='inputForm'>タスク：</label>
         <input
