@@ -1,13 +1,14 @@
+/** @jsxImportSource @emotion/react */
+
 import { Controller, useForm } from 'react-hook-form';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ja from 'date-fns/locale/ja';
-// react-datepicker用CSS
-import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import { useMutation } from '@apollo/client';
 import { GET_TASKS, UPDATE_TASK } from '../../../ts/gql';
 import { useSetRecoilState } from 'recoil';
 import { isTaskEditableAtom } from '../../../recoil/atom';
+import { deadlineInput, taskTitleInput } from '../styles/editForm';
 
 type FormDataParam = {
   id: number;
@@ -46,20 +47,23 @@ const EditTask = (props: any) => {
       <td>
         <input
           type='text'
+          css={taskTitleInput}
           defaultValue={props.previousTitle}
           {...register('title')}
         />
       </td>
-      <td>
+      <td css={deadlineInput}>
         <Controller
           control={control}
           name='deadline'
           defaultValue={new Date(props.previousDeadline)}
-          render={({ field: { onChange, value } }) => (
+          render={({
+            field: { onChange, value = new Date(props.previousDeadline) },
+          }) => (
             <DatePicker
               showIcon
               locale='ja'
-              selected={value ? value : new Date(props.previousDeadline)}
+              selected={value}
               onChange={(date) => {
                 date && onChange(date);
               }}

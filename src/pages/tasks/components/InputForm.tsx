@@ -1,11 +1,18 @@
+/** @jsxImportSource @emotion/react */
+
 import { Controller, useForm } from 'react-hook-form';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ja from 'date-fns/locale/ja';
-// react-datepicker用CSS
-import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK, GET_TASKS } from '../../../ts/gql';
+import {
+  formWrapper,
+  inputForm,
+  formLabel,
+  taskTitleInput,
+  submitBtn,
+} from '../styles/inputForm';
 
 type InputDataType = {
   title: string;
@@ -42,35 +49,47 @@ const InputForm = () => {
   };
 
   return (
-    <div>
+    <div css={formWrapper}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor='inputForm'>タスク：</label>
-        <input
-          type='text'
-          id='inputForm'
-          {...register('title')}
-          placeholder='入力してください'
-          required={true}
-        />
-        <label>期限：</label>
-        <Controller
-          control={control}
-          name='deadline'
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, value } }) => (
-            <DatePicker
-              showIcon
-              locale='ja'
-              selected={value ? value : new Date()}
-              onChange={(date) => {
-                date && onChange(date);
-              }}
-            />
-          )}
-        />
-        <button type='submit'>追加</button>
+        <div css={inputForm}>
+          <label htmlFor='taskTitle' css={formLabel}>
+            タスク：
+          </label>
+          <input
+            type='text'
+            id='taskTitle'
+            css={taskTitleInput}
+            {...register('title')}
+            placeholder='入力してください'
+            required={true}
+          />
+        </div>
+        <div css={inputForm}>
+          <label htmlFor='deadline' css={formLabel}>
+            期限：
+          </label>
+          <Controller
+            control={control}
+            name='deadline'
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, value = new Date() } }) => (
+              <DatePicker
+                showIcon
+                id='deadline'
+                locale='ja'
+                selected={value}
+                onChange={(date) => {
+                  date && onChange(date);
+                }}
+              />
+            )}
+          />
+        </div>
+        <button type='submit' css={submitBtn}>
+          追加
+        </button>
       </form>
 
       {loading && <p>Submitting...</p>}

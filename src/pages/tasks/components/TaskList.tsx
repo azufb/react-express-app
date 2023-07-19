@@ -1,8 +1,25 @@
+/** @jsxImportSource @emotion/react */
+
 import { useMutation, useQuery } from '@apollo/client';
 import { DELETE_TASK, GET_TASKS } from '../../../ts/gql';
 import { useRecoilState } from 'recoil';
 import { isTaskEditableAtom } from '../../../recoil/atom';
 import EditTask from './EditTask';
+import {
+  listWrapper,
+  table,
+  thead,
+  idColumn,
+  titleColumn,
+  deadlineColumn,
+  buttonColumn,
+  tbody,
+  id,
+  title,
+  deadline,
+  buttons,
+  button,
+} from '../styles/taskList';
 
 type DeleteParam = {
   id: number;
@@ -34,27 +51,26 @@ const TaskList = () => {
   };
 
   return (
-    <div>
+    <div css={listWrapper}>
       {loading && <p>Loading...</p>}
       {!loading &&
         (data.getTasks.length === 0 ? (
           <p>表示するタスクは現在0です。</p>
         ) : (
-          <table>
-            <thead>
+          <table css={table}>
+            <thead css={thead}>
               <tr>
-                <th>id</th>
-                <th>タイトル</th>
-                <th>期限</th>
-                <th></th>
-                <th></th>
+                <th css={idColumn}>id</th>
+                <th css={titleColumn}>タイトル</th>
+                <th css={deadlineColumn}>期限</th>
+                <th css={buttonColumn}></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody css={tbody}>
               {/* ローディング終わるのを待たないと、undefinedが返ってくる */}
               {data.getTasks.map((task: any) => (
                 <tr key={task.id}>
-                  <td>{task.id}</td>
+                  <td css={id}>{task.id}</td>
                   {isTaskEditable ? (
                     <EditTask
                       taskId={task.id}
@@ -63,18 +79,21 @@ const TaskList = () => {
                     />
                   ) : (
                     <>
-                      <td>{task.title}</td>
-                      <td>{task.deadline}</td>
-                      <td>
-                        <button onClick={handleChangeEditable}>編集</button>
+                      <td css={title}>{task.title}</td>
+                      <td css={deadline}>{task.deadline}</td>
+                      <td css={buttons}>
+                        <button css={button} onClick={handleChangeEditable}>
+                          編集
+                        </button>
+                        <button
+                          css={button}
+                          onClick={() => handleDeleteTask(task.id)}
+                        >
+                          削除
+                        </button>
                       </td>
                     </>
                   )}
-                  <td>
-                    <button onClick={() => handleDeleteTask(task.id)}>
-                      削除
-                    </button>
-                  </td>
                 </tr>
               ))}
             </tbody>
