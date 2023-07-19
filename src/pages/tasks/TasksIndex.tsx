@@ -9,7 +9,7 @@ import { contentsWrapper } from './styles/taskIndex';
 const TasksIndex = () => {
   return (
     <Layout>
-      <PageTitle pageTitle='タスク管理' />
+      <PageTitle pageTitle='Tasks' />
       <div css={contentsWrapper}>
         <InputForm />
         <TaskList />
