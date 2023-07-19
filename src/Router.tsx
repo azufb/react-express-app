@@ -17,7 +17,7 @@ const Layout = () => {
         </div>
         <div css={navigation}>
           <span>
-            <Link to='/Tasks'>タスク</Link>
+            <Link to='/Tasks'>Tasks</Link>
           </span>
         </div>
         <div css={navigation}>
