@@ -1,22 +1,21 @@
-import { useQuery } from '@apollo/client';
-import { GET_GREETING } from '../../ts/gql';
+/** @jsxImportSource @emotion/react */
+
 import PageTitle from '../../components/PageTitle';
 import Layout from '../../components/Layout';
+import GetGreeting from './components/GetGreeting';
+import HelloWorld from './components/HelloWorld';
+import RandomGreeting from './components/RandomGreeting';
+import { contentsWrapper } from './styles/greetingIndex';
 
 const GreetingIndex = () => {
-  const { loading, error, data } = useQuery(GET_GREETING);
-
   return (
     <Layout>
       <PageTitle pageTitle='Greeting' />
-      {loading && <p>Loading...</p>}
-      {!loading && (
-        <>
-          <p>{data.hello}</p>
-          <p>{data.goodbye}</p>
-        </>
-      )}
-      {error && <p>Error : {error.message}</p>}
+      <div css={contentsWrapper}>
+        <GetGreeting />
+        <HelloWorld />
+        <RandomGreeting />
+      </div>
     </Layout>
   );
 };
