@@ -1,11 +1,5 @@
 import { DocumentNode, gql } from '@apollo/client';
 
-export const GET_HELLO_WORLD: DocumentNode = gql`
-  query getHelloWOrld {
-    helloWorld
-  }
-`;
-
 export const GET_RANDOM_GREETING: DocumentNode = gql`
   query getRandomGreeting {
     greeting
@@ -15,7 +9,6 @@ export const GET_RANDOM_GREETING: DocumentNode = gql`
 export const GET_GREETING: DocumentNode = gql`
   query getGreeting($name: String) {
     hello(name: $name)
-    goodbye(name: $name)
   }
 `;
 

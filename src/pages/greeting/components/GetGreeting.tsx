@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { greetingWrapper } from '../styles/getGreeting';
 
 const GetGreeting = () => {
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>('x');
   const { loading, data } = useQuery(GET_GREETING, {
     variables: { name },
   });
@@ -29,10 +29,6 @@ const GetGreeting = () => {
       <div>
         <label>hello：</label>
         <span>{loading ? 'Loading...' : data.hello}</span>
-      </div>
-      <div>
-        <label>goodbye：</label>
-        <span>{loading ? 'Loading...' : data.goodbye}</span>
       </div>
     </div>
   );
