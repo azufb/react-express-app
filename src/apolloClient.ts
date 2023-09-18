@@ -5,7 +5,7 @@ import {
 } from '@apollo/client';
 
 const apolloClient: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-  uri: 'http://localhost:8000/api',
+  uri: process.env.REACT_APP_API_URL,
   cache: new InMemoryCache(),
 });
 
