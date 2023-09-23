@@ -61,7 +61,6 @@ const InputForm = () => {
             css={taskTitleInput}
             {...register('title')}
             placeholder='入力してください'
-            required={true}
           />
         </div>
         <div css={inputForm}>

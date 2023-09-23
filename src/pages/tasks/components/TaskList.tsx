@@ -20,12 +20,13 @@ import {
   buttons,
   button,
 } from '../styles/taskList';
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 
 type DeleteParam = {
   id: number;
 };
 
-const TaskList = () => {
+const TaskList = (): EmotionJSX.Element => {
   const { loading, error, data } = useQuery(GET_TASKS);
   const [deleteTask] = useMutation(DELETE_TASK, {
     // 削除が実行されたら、再度タスク一覧を取得する
