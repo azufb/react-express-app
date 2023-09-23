@@ -13,7 +13,7 @@ export const GET_GREETING: DocumentNode = gql`
 `;
 
 export const ADD_TASK: DocumentNode = gql`
-  mutation AddTask($title: String, $deadline: String) {
+  mutation AddTask($title: String!, $deadline: String) {
     addTask(title: $title, deadline: $deadline) {
       id
       title
@@ -33,7 +33,7 @@ export const GET_TASKS: DocumentNode = gql`
 `;
 
 export const DELETE_TASK: DocumentNode = gql`
-  mutation DeleteTask($id: Int) {
+  mutation DeleteTask($id: Int!) {
     deleteTask(id: $id) {
       id
       title
@@ -43,7 +43,7 @@ export const DELETE_TASK: DocumentNode = gql`
 `;
 
 export const UPDATE_TASK: DocumentNode = gql`
-  mutation UpdateTask($id: Int, $title: String, $deadline: String) {
+  mutation UpdateTask($id: Int!, $title: String!, $deadline: String) {
     updateTask(id: $id, title: $title, deadline: $deadline) {
       id
       title
